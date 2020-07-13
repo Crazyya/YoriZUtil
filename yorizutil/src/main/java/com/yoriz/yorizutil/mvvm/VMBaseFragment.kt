@@ -13,11 +13,11 @@ import kotlinx.coroutines.MainScope
  * on 2019-09-23 12:12.
  */
 abstract class VMBaseFragment<VM : BaseViewModel> : CoroutineScope by MainScope(), Fragment() {
-    private var rootView: View? = null
+    protected var rootView: View? = null
 
     protected abstract fun initViewModel(): VM
 
-    protected abstract fun initView()
+    protected abstract fun initView(view: View)
 
     protected val vm: VM by lazy {
         initViewModel()
@@ -36,7 +36,7 @@ abstract class VMBaseFragment<VM : BaseViewModel> : CoroutineScope by MainScope(
         if (parent != null) {
             (parent as ViewGroup).removeView(rootView)
         }
-        initView()
+        initView(rootView!!)
         return rootView
     }
 }

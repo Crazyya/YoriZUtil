@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: "guru.stefma.bintrayrelease"
 
 
-version = "1.3.17"
+version = "1.3.19"
 group = "com.yoriz"
 androidArtifact {
     artifactId = "bintrayrelease"
