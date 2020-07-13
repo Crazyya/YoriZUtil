@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">yorizutil</string>
+    <string name="error_text_name">ErrorMessage</string>
+</resources>

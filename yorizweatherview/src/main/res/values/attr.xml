@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="weather_style">
+        <enum name="cloud" value="0"/>
+        <enum name="rain" value="1"/>
+        <enum name="sun" value="2"/>
+        <enum name="sun_cloud" value="3"/>
+    </attr>
+
+    <declare-styleable name="YoriZWeatherView">
+        <attr name="weather_style"/>
+        <attr name="cloud_color" format="color"/>
+        <attr name="sun_color" format="color"/>
+        <attr name="rain_color" format="color"/>
+        <attr name="cloud_alpha" format="integer"/>
+    </declare-styleable>
+</resources>

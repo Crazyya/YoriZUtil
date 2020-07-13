@@ -1,0 +1,14 @@
+build/
+.idea
+.gradle/
+.idea/workspace.xml
+app/build/
+local.properties
+*.iml
+*.ipr
+*.iws
+.DS_Store
+*.apk
+*.ap_
+*.log
+*.dex
