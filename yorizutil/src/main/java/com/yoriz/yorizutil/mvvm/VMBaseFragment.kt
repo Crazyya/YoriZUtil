@@ -39,4 +39,9 @@ abstract class VMBaseFragment<VM : BaseViewModel> : CoroutineScope by MainScope(
         initView(rootView!!)
         return rootView
     }
+
+    override fun onDestroyView() {
+        rootView = null
+        super.onDestroyView()
+    }
 }
