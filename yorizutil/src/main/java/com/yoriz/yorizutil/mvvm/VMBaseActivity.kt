@@ -66,7 +66,11 @@ abstract class VMBaseActivity<VM : BaseViewModel> : BaseActivity() {
         })
     }
 
-    protected abstract fun showError(data: Any, func: () -> Unit = {})
+    protected open fun showError(data: Any, func: () -> Unit = {}) {
+        showPromptDialog(data.toString())
+    }
 
-    protected abstract fun showMsg(data: Any)
+    protected open fun showMsg(data: Any){
+        showPromptDialog(data.toString())
+    }
 }
