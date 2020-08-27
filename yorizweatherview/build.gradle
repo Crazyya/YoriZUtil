@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-/*apply plugin: "guru.stefma.bintrayrelease"
+apply plugin: 'kotlin-android-extensions'
 
+/*
+apply plugin: "guru.stefma.bintrayrelease"
 version = "1.0.0"
 group = "com.yoriz"
 
