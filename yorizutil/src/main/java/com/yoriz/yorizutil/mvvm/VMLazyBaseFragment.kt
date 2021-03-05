@@ -9,12 +9,7 @@ abstract class VMLazyBaseFragment<VM : BaseViewModel> : VMBaseFragment<VM>() {
     /**
      * 是否第一次加载
      */
-    private var isFirstLoad = false
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        isFirstLoad = true
-    }
+    private var isFirstLoad = true
 
     override fun onResume() {
         super.onResume()
