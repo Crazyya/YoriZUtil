@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.text.Html
+import android.text.method.ScrollingMovementMethod
 import com.yoriz.yorizutil.BaseActivity
 import com.yoriz.yorizutil.R
 import com.yoriz.yorizutil.widget.YoriDialog
@@ -30,6 +31,9 @@ abstract class VMBaseActivity<VM : BaseViewModel> : BaseActivity() {
                     alertDialog.setCanceledOnTouchOutside(true)
                     alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     cancel()
+                }
+                setViewDetail{
+                    it.msg.movementMethod = ScrollingMovementMethod.getInstance()
                 }
             }
         }
