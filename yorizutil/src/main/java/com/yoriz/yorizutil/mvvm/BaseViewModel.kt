@@ -43,16 +43,17 @@ abstract class BaseViewModel(protected val savedStateHandle: SavedStateHandle) :
      * 供继承BaseViewModel的使用，更偷懒了，直接用类的SavedStateHandle
      */
     protected fun <T> MutableLiveData<T>.init(keyName: String, defaultValue: T? = null): MutableLiveData<T> {
-        return this.also {
+        return this.also {liveData->
             //确认是否包含此key
             if (!savedStateHandle.contains(keyName)) {
                 //如果不包含就要写入值，在这之前确认传递进来的值是否为null，null就结束
-                if (defaultValue == null) return@also
-                savedStateHandle.set(keyName, defaultValue)
-                it.value = defaultValue
+                defaultValue?.also {
+                    savedStateHandle.set(keyName, it)
+                    liveData.value = it
+                }
             } else {
                 //包含对应的值就直接赋值
-                it.value = savedStateHandle.get(keyName)
+                liveData.value = savedStateHandle.get(keyName)
             }
         }
     }
@@ -61,8 +62,10 @@ abstract class BaseViewModel(protected val savedStateHandle: SavedStateHandle) :
      * 供继承BaseViewModel的使用，更偷懒了，直接用类的SavedStateHandle
      */
     protected fun <T> MutableLiveData<T>.set(keyName: String, value: T?) {
-        this.value = value
-        savedStateHandle.set(keyName, value)
+        value?.also {
+            this.value = it
+            savedStateHandle.set(keyName, it)
+        }
     }
 
     override fun onCleared() {

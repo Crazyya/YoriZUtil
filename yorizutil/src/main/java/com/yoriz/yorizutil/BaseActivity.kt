@@ -15,7 +15,7 @@ import kotlinx.coroutines.*
  * Created by yoriz
  * on 2018/12/18 12:25 PM.
  */
-abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
         // 应用退出用的广播标签
@@ -25,16 +25,13 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     /**
      * 退出应用使用的广播
      */
-    private val exitBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+    protected val exitBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action == EXIT_APP_ACTION && context is BaseActivity) {
                 context.finish()
             }
         }
     }
-
-    // 使用户不能超速进入返回，跳转动画没做完就返回次数多了视觉上会觉得卡的
-    private var isBack = false
 
     /**
      * 此处是最下方虚拟按键的背景色
@@ -70,33 +67,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      */
     protected fun baseOnCreate() {
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // 每次进入应用都有0.8s时间后才允许退出
-        isBack = false
-        launch {
-            delay(800)
-            isBack = true
-        }
-        super.onStart()
-    }
-
-    override fun onBackPressed() {
-        if (isBack) {
-            super.onBackPressed()
-        }
-    }
-
-    override fun onDestroy() {
-        //这里会出现一个取消异常，资料确认是取消手段，加个catch捕获了，正确应该捕获CancellationException,这里直接用这个了
-        try{
-            cancel()
-        }catch (e:Exception){}
-        // 释放广播监听
-        unregisterReceiver(exitBroadcastReceiver)
-        super.onDestroy()
     }
 
     /**
